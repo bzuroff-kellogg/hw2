@@ -82,6 +82,80 @@
 # Generate models and tables, according to the domain model.
 # TODO!
 
+Studio.destroy_all
+studio = Studio.new 
+studio["studio_name"] = "Warner Bros."
+studio.save
+
+Movie.destroy_all
+movie = Movie.new
+warner = Studio.find_by({"studio_name" => "Warner Bros."})
+movie["title"] = "Batman Begins"
+movie["year_released"]= "2005"
+movie["rating"] ="PG-13"
+movie["studio_id"]= warner["id"]
+movie.save
+
+movie = Movie.new 
+warner = Studio.find_by({"studio_name" => "Warner Bros."})
+movie["title"] = "The Dark Knight"
+movie["year_released"]= "2008"
+movie["rating"] ="PG-13"
+movie["studio_id"]= warner["id"]
+movie.save
+
+movie = Movie.new 
+warner = Studio.find_by({"studio_name" => "Warner Bros."})
+movie["title"] = "The Dark Knight Rises"
+movie["year_released"]= "2012"
+movie["rating"] ="PG-13"
+movie["studio_id"]= warner["id"]
+movie.save
+
+Agent.destroy_all
+agent = Agent.new
+agent["agent_name"]= "Ari Emmanuel"
+agent.save
+
+Actor.destroy_all
+actor = Actor.new
+emmanuel =Agent.find_by({"agent_name"=> "Ari Emmanuel"})
+actor["actor_name"] = "Christian Bale"
+actor["agent_id"] = emmanuel["id"]
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Michael Caine"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Liam Neeson"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Katie Holmes"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Gary Oldman"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Heath Ledger"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Aaron Eckhart"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Maggie Gyllenhaal"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Tom Hardy"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Joseph Gordon-Levitt"
+actor.save
+actor = Actor.new
+actor["actor_name"] = "Anne Hathaway"
+actor.save
+
+
+
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
