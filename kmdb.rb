@@ -270,8 +270,8 @@ for movie in movies
   title = movie["title"]
   year_released = movie["year_released"]
   rating = movie["rating"]
-  studio = Studio.find_by({"id"=> movie["studio_id"]})
-  p "#{title}, #{year_released}, #{rating}, #{studio['studio_name']}"
+  studio = Studio.find_by({"id"=> movie["studio_id"]})["studio_name"]
+puts "#{title}  #{year_released}  #{rating}  #{studio}"
 
   end
 
@@ -280,19 +280,21 @@ puts ""
 puts "Top Cast"
 puts "========"
 puts ""
-roles = Role.all
-for role in roles
-
-  title = Movie.find_by({"id"=> role["movie_id"]})
-  actor = Actor.find_by({"id"=> role["actor_id"]})
-  role_name = role["role_name"]
-  p "#{title ['title']}, #{actor ['actor_name']}, #{role_name}"
-
-  end
 
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+for role in roles
+
+  title = Movie.find_by({"id"=> role["movie_id"]})["title"]
+  actor = Actor.find_by({"id"=> role["actor_id"]})["actor_name"]
+  role_name = role["role_name"]
+  puts "#{title} #{actor} #{role_name}"
+
+  end
+
 
 # Prints a header for the agent's list of represented actors output
 puts ""
@@ -300,5 +302,14 @@ puts "Represented by agent"
 puts "===================="
 puts ""
 
+
 # Query the actor data and loop through the results to display the agent's list of represented actors output.
 # TODO!
+actors = Actor.all
+
+agent = Agent.find_by({ "agent_name" => "Ari Emmanuel" })
+actors = Actor.where({ "agent_id" => agent["id"] })
+
+for actor in actors
+  puts actor["actor_name"]
+end
